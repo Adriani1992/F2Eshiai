@@ -11,21 +11,6 @@
           <div class="en">TRAVEL AROUND TAIWAN, HAVE FUN!</div>
         </div>
         <v-form ref="searchForm" v-model="formvalidate">
-          <!-- <div class="searchArea d-flex">
-            <input
-              ref="searchArea"
-              type="text"
-              class="top_searchbar"
-              placeholder="輸入目的地、景點或相關關鍵字"
-              @blur="testFocus"
-            />
-            <div
-              class="btn d-flex align-item-center justify-center"
-              @mousedown="mysearchbar"
-            >
-              <v-icon color="#fff" size="38px"> mdi-magnify </v-icon>
-            </div>
-          </div> -->
           <div class="searchArea d-flex mt-8 farAwayBottom">
             <v-row class="mr-2 selectionbar">
               <v-col cols="10" :xs="10" :sm="10" :md="5">
@@ -53,17 +38,6 @@
                   <v-icon color="#fff" size="24px"> mdi-send </v-icon>
                 </div>
               </v-col>
-              <!-- <v-col cols="4">
-                <v-autocomplete
-                  v-model="selectCost"
-                  outlined
-                  solo
-                  :items="cost"
-                  hide-details="auto"
-                  placeholder="依是否需要花費"
-                  color="#00A7BA"
-                />
-              </v-col> -->
               <v-col cols="12" :xs="12" :sm="12" :md="5">
                 <v-autocomplete
                   v-model="selectCategory"
@@ -76,7 +50,6 @@
                   :rules="validateRule.categoryRules"
                 />
               </v-col>
-              <!-- </v-row> -->
               <v-col
                 cols="12"
                 :xs="12"
@@ -96,8 +69,6 @@
         </v-form>
       </div>
     </v-row>
-    <!-- //   {{ selectCity }}
-    {{ selectCategory }} -->
   </v-container>
 </template>
 

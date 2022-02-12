@@ -75,74 +75,76 @@
       </template>
     </Dialog>
     <v-row class="category_reference">
-      <subTitle :title="title" :titleEn="titleEn" />
-      <div class="category_content">
-        <div class="category_slip">
-          <div
-            class="category_total"
-            ref="categorycoat"
-            :style="{ left: movespace + 'px' }"
-          >
+      <div class="fixedContainer">
+        <subTitle :title="title" :titleEn="titleEn" />
+        <div class="category_content">
+          <div class="category_slip">
             <div
-              class="category_box"
-              v-for="item in data"
-              :key="item.ID"
-              @click="openDialog(item)"
+              class="category_total"
+              ref="categorycoat"
+              :style="{ left: movespace + 'px' }"
             >
-              <div class="category_top" v-if="item.Picture.PictureUrl1">
-                <img
-                  :src="item.Picture.PictureUrl1"
-                  :alt="item.Picture.PictureDescription1"
-                />
-              </div>
               <div
-                class="
-                  category_top
-                  withoutPicture
-                  d-flex
-                  justify-center
-                  align-center
-                "
-                v-else
+                class="category_box"
+                v-for="item in data"
+                :key="item.ID"
+                @click="openDialog(item)"
               >
-                No Picture
-              </div>
-              <div class="category_bottom">
-                <ul>
-                  <li>
-                    <div class="bottom_title">
-                      {{ maxLength(item.Name, 10) }}
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex flex-grows">
-                      <v-icon size="20px" color="#173565"
-                        >mdi-clock-outline</v-icon
-                      >
-                      <p>{{ maxLength(item.OpenTime, 11) }}</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex flex-grows">
-                      <v-icon size="20px" color="#173565">mdi-phone</v-icon>
-                      <p>{{ item.Phone }}</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="d-flex flex-grows">
-                      <v-icon size="20px" color="#173565"
-                        >mdi-map-marker</v-icon
-                      >
-                      <p>{{ maxLength(item.Address, 10) }}</p>
-                    </div>
-                  </li>
-                </ul>
+                <div class="category_top" v-if="item.Picture.PictureUrl1">
+                  <img
+                    :src="item.Picture.PictureUrl1"
+                    :alt="item.Picture.PictureDescription1"
+                  />
+                </div>
+                <div
+                  class="
+                    category_top
+                    withoutPicture
+                    d-flex
+                    justify-center
+                    align-center
+                  "
+                  v-else
+                >
+                  No Picture
+                </div>
+                <div class="category_bottom">
+                  <ul>
+                    <li>
+                      <div class="bottom_title">
+                        {{ maxLength(item.Name, 10) }}
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex flex-grows">
+                        <v-icon size="20px" color="#173565"
+                          >mdi-clock-outline</v-icon
+                        >
+                        <p>{{ maxLength(item.OpenTime, 11) }}</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex flex-grows">
+                        <v-icon size="20px" color="#173565">mdi-phone</v-icon>
+                        <p>{{ item.Phone }}</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex flex-grows">
+                        <v-icon size="20px" color="#173565"
+                          >mdi-map-marker</v-icon
+                        >
+                        <p>{{ maxLength(item.Address, 10) }}</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="category_btn" @click="handleCategory">
-          <v-icon color="#dfe5f0" size="112px">mdi-chevron-right </v-icon>
+          <div class="category_btn" @click="handleCategory">
+            <v-icon color="#dfe5f0" size="112px">mdi-chevron-right </v-icon>
+          </div>
         </div>
       </div>
     </v-row>
@@ -226,9 +228,9 @@ export default {
           this.movespace -= 367;
         }
       }
-      if (this.windowSize === 1440) {
-        if (this.movespace > -width + 1152) {
-          this.movespace -= 1152;
+      if (this.windowSize <= 1920) {
+        if (this.movespace > -width + 1728) {
+          this.movespace -= 1728;
         }
       }
       // if (this.movespace > -width + 1152) {

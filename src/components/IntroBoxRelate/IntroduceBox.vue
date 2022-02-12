@@ -116,7 +116,7 @@
         </v-container>
       </template>
     </Dialog>
-    <div class="reuse_container d-flex flex-wrap justify-center">
+    <div class="reuse_container">
       <div
         class="reuse_box"
         v-for="item in data"
@@ -173,8 +173,8 @@ import axios from "axios";
 import relateFunction from "@/utils/relateFunction";
 import { categoryItems } from "@/utils/data.js";
 import subTitle from "@/components/subTitle.vue";
-import IntroduceBoxWithBtn from "@/components/introduceBoxWithBtn.vue";
-import InsideBox from "@/components/InsideBox.vue";
+import IntroduceBoxWithBtn from "@/components/IntroBoxRelate/introduceBoxWithBtn.vue";
+import InsideBox from "@/components/IntroBoxRelate/InsideBox.vue";
 export default {
   name: "IntroduceBox",
   components: {

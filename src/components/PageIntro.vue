@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import IntroduceBox from "@/components/IntroduceBox";
+import IntroduceBox from "@/components/IntroBoxRelate/IntroduceBox";
 import CategoryItem from "@/components/CategoryItem";
 import subTitle from "@/components/subTitle.vue";
 import { cloneDeep } from "lodash";
@@ -42,10 +42,6 @@ export default {
   name: "Hotels",
   components: { Pagenation, IntroduceBox, subTitle, CategoryItem },
   props: {
-    ContentData: {
-      type: Array,
-      require: true,
-    },
     configs: {
       type: Object,
       require: true,

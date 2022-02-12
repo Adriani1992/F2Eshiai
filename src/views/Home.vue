@@ -2,12 +2,12 @@
   <div>
     <!-- <SearchSection /> -->
     <CategoryItem />
-    <ScenicSpot
+    <LandingPage
       :title="'景點'"
       :titleEn="'Scenic Spot'"
       :data="ScenicSpotData"
     />
-    <ScenicSpot
+    <LandingPage
       :title="'美食'"
       :titleEn="'Restaurant'"
       :data="restaurantData"
@@ -19,13 +19,13 @@
 //import SearchSection from "@/components/SearchSection";
 import { cityItems } from "@/utils/data.js";
 import CategoryItem from "@/components/CategoryItem";
-import ScenicSpot from "@/components/ScenicSpot.vue";
+import LandingPage from "@/components/LandingPage.vue";
 import relateFunction from "@/utils/relateFunction";
 import axios from "axios";
 
 export default {
   name: "Home",
-  components: { CategoryItem, ScenicSpot },
+  components: { CategoryItem, LandingPage },
   data() {
     return {
       show: false,

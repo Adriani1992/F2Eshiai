@@ -26,7 +26,7 @@ const routes = [
     path: "/Hotel",
     name: "Hotel",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/Pages/Test.vue"),
+      import(/* webpackChunkName: "about" */ "@/views/Pages/Hotels.vue"),
   },
   {
     path: "/Restaurant",
@@ -34,12 +34,6 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/Pages/Restaurant.vue"),
   },
-  // {
-  //   path: "/Test",
-  //   name: "Restaurant",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "@/views/Pages/Test.vue"),
-  // },
 
 ];
 
