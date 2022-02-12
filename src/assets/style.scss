@@ -1,0 +1,717 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
+
+
+$titleColour: #00A7BA;
+$fontColour: #173565;
+$menuColour:#93A7C1;
+$logo:#dfe5f0;
+$subColour:#f3f3f3;
+$background:#ffffff;
+
+*{
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+
+
+#app{
+    background-color: $subColour;
+    transition: 5.5s;
+    overflow: hidden;
+}
+.circle{
+    position: absolute;
+    right: 1rem;
+    bottom: 8.5rem;
+}
+
+.websiteName {
+    display: flex;
+    align-items:center;
+    //1920 * 1080
+    // margin-left: 6.5rem;
+    // margin-right: 11.5rem;
+    //1440 * 800
+    margin-left:4.875rem;
+    margin-right:8.625rem;
+    @media screen and (max-width:375px) {
+    margin-left:2.25rem;
+    margin-right:12.5rem;
+    }
+    .logo {
+      width: 115px;
+      height: 80px;
+      @media screen and (max-width: 375px){
+          width: 43.5px;
+          height: 30.26px;
+      }
+    }
+    .logoName {
+        font-size: 46px;
+        color: $titleColour;
+        @media screen and (max-width: 375px){
+            width: 60px;
+            font-size: 15px;
+        }
+    }
+}
+
+//Pagenation
+.v-pagination__navigation{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.v-pagination__item{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.theme--light.v-pagination .v-pagination__item--active {
+    background-color: #173565 !important;
+}
+.pagenation-top{
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+//
+.linkItems{
+   display: flex;
+   flex-grow: 1;
+a{
+        text-decoration: none !important;
+}
+
+.router-link-exact-active{
+   .navbarItem{
+       border: 2px dotted #00A7BA !important;
+   }
+}
+
+.navbarItem {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    .ch{
+        color:$fontColour
+    }
+    .en{
+        color:$menuColour
+    }
+    // &:hover{
+    //     border: 2px dotted #00A7BA !important;
+    // }
+}
+}
+.linkItemsMobile{
+  display: none;
+}
+
+.image{
+    background-image: url(./images/cover1.jpg);
+    filter: blur(4px) opacity(.9) brightness(1);
+    height: 474px;
+    width:100%;
+    max-width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.v-input__slot{
+    height: 60px !important;
+    @media screen and (max-width:375px) {
+        min-height: 40px !important;
+        height: 40px !important;
+    }
+}
+
+.selectionbar{
+    @media screen and (max-width:375px) {
+        margin-left:.5rem  !important;
+    }
+.v-icon.v-icon{
+    font-size: 50px !important;
+}
+}
+
+//footer
+footer {
+    max-height: 164px;
+    height: 121.4px;
+    background-color: $titleColour;
+  }
+
+//category selected options
+.scenic_section{
+    margin-bottom: 10rem;
+    @media screen and (max-width:375px) {
+        margin-bottom: 5rem;
+    }
+}
+.category_content{
+    margin-left: 112px;
+    display: flex;
+    align-items: center;
+    @media screen and (max-width:375px) {
+        margin-left: 20px;
+    }
+    .category_slip{
+        width: 1152px;
+        height:800px;
+        position: relative;
+        // border: 1px solid #000;
+        // overflow: hidden;
+        @media screen and (max-width:375px) {
+            width: 375px;
+            max-width: 375px;
+            height:450px;
+            overflow: hidden;
+        }
+        .category_total{
+        position: absolute;
+        // border:1px solid #000;
+        display: flex;
+        transition: .5s;
+        // justify-content: center;
+        height: 100%;
+        align-items: center;
+        width: 5760px;
+        @media screen and (max-width:375px) {
+            width: 3670px;
+        }
+        .category_box{
+            height: 640px;
+            width: 544px;
+            border-radius: 10px;
+            // border:1px solid #000;
+            overflow: hidden;
+            margin-right: 2rem;
+            @media screen and (max-width:375px) {
+                height: 394px;
+                width: 335px;
+            }
+            .category_top{
+                height: 400px;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+                @media screen and (max-width:375px) {
+                    height: 240px;
+                }
+            }
+            .category_bottom{
+                background-color: #fff;
+                height: 240px;
+                .bottom_title{
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+                ul{
+                    list-style: none;
+                    color: $fontColour;
+                    li{
+                      padding-top:.5rem;  
+                    }
+                 
+                    p{
+                        font-size: 28px;
+                        margin-bottom: 0;
+                        margin-left: 1rem;
+                    }
+                }
+                @media screen and (max-width:375px) {
+                    .bottom_title{
+                        font-size: 1rem;
+                    }
+                    ul{
+                        p{
+                            font-size: 14px;
+
+                        }
+                    }
+                }
+            }
+        }
+        }
+    }
+    .category_btn{
+        width: 150px;
+        height: 150px;
+        transition: 3s;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right:0;
+        @media screen and (max-width:375px) {
+            .v-icon.v-icon{
+                font-size: 64px !important;
+            }
+          width: 64px;
+          height: 64px;
+        }
+    }
+}
+
+.withoutPicture{
+    font-size: 56px;
+    color:#fff;
+    background:url(./images/cover2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media screen and (max-width:540px) {
+        font-size:28px;
+    }
+}
+
+.dialog_content{
+    margin-left: 112px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .dialog_slip{
+        width: 1240px;
+        max-width: 1240px;
+        height:800px;
+        position: relative;
+        // border: 1px solid #000;
+        overflow: hidden;
+      
+        .dialog_total{
+        position: absolute;
+        // border:1px solid #000;
+        display: flex;
+        transition: .5s;
+        // justify-content: center;
+        height: 100%;
+        align-items: center;
+        width: 4608px;
+        .dialog_box{
+            height: 640px;
+            width: 544px;
+            border-radius: 10px;
+            // border:1px solid #000;
+            overflow: hidden;
+            margin-right: 2rem;
+            .dialog_top{
+                height: 400px;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            .dialog_bottom{
+                background-color: #fff;
+                height: 240px;
+                .bottom_title{
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+                ul{
+                    list-style: none;
+                    color: $fontColour;
+                    li{
+                      padding-top:.5rem;  
+                    }
+                 
+                    p{
+                        font-size: 28px;
+                        margin-bottom: 0;
+                        margin-left: 1rem;
+                    }
+                }
+            }
+        }
+        }
+    }
+    .dialog_btn{
+        width: 150px;
+        height: 150px;
+        transition: 3s;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right:0;
+    }
+}
+
+
+//reuse
+.reuse_container{
+.reuse_box{
+    height: 640px;
+    width: 544px;
+    border-radius: 10px;
+    // border:1px solid #000;
+    overflow: hidden;
+    margin-top:5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    @media screen and (max-width:375px) {
+        height: 394px;
+        width: 335px;
+    }
+    .reuse_top{
+        height: 400px;
+        overflow: hidden;
+        @media screen and (max-width:375px) {
+            height: 240px;
+        }
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .reuse_bottom{
+        background-color: #fff;
+        height: 240px;
+        .resue_bottom_title{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        ul{
+            list-style: none;
+            color: $fontColour;
+            li{
+              padding-top:.5rem;  
+            }
+         
+            p{
+                font-size: 28px;
+                margin-bottom: 0;
+                margin-left: 1rem;
+            }
+        }
+        @media screen and (max-width:375px) {
+            .resue_bottom_title{
+                font-size: 1rem;
+            }
+            ul{
+                p{
+                    font-size: 14px;
+
+                }
+            }
+        }
+    }
+}
+.reuse_btn{
+    width: 150px;
+    height: 150px;
+    transition: 3s;
+    cursor: pointer;
+    // display: flex;
+    // align-items: center;
+    position: absolute;
+    top:0;
+}
+}
+.dialog_r{
+    margin-left:-2rem !important;
+}
+.dialogBox{
+     max-width: 1200px;
+     width: 1200px;
+     overflow: hidden;
+     position: relative;
+     @media screen and (max-width:375px) {
+        width: 300px;
+     }
+     .r_btn{
+        width: 150px;
+        height: 150px;
+        transition: 3s;
+        cursor: pointer;
+        // display: flex;
+        // align-items: center;
+        position: absolute;
+        top:50%;
+        right:1%;
+        @media screen and (max-width:540px) {
+            right:-70px;
+        }        
+    }
+}
+
+//reuse_box dialog
+.reuse_container_dialog{
+    position: relative;
+    @media screen and (max-width:540px) {
+        margin-left: 2.25rem;
+    }
+.reuse_box_dialog{
+    height: 500px;
+    width: 425px;
+    border-radius: 10px;
+    // border:1px solid #000;
+    overflow: hidden;
+    margin-top:5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    @media screen and (max-width:375px) {
+        height: 300px;
+        width: 240px;
+        margin-top: 2rem;
+    }
+    .reuse_top_dialog{
+        height: 312.5px;
+        overflow: hidden;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        @media screen and (max-width:375px) {
+            height: 187.5px;
+        }
+    }
+    .reuse_bottom_dialog{
+        background-color: #fff;
+        height: 187.5px;
+        .reuse_bottom_title_dialog{
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        ul{
+            list-style: none;
+            color: $fontColour;
+            li{
+              padding-top:.5rem;  
+            }
+         
+            p{
+                font-size: 21.8px;
+                margin-bottom: 0;
+                margin-left: 1rem;
+            }
+        }
+        @media screen and (max-width:375px) {
+            .resue_bottom_title{
+                font-size: 1rem;
+            }
+            ul{
+                li{
+                    padding-top:.25rem;  
+                  }
+                p{
+                    font-size: 14px;
+
+                }
+            }
+        }
+    }
+}
+}
+
+//coverwithtext
+
+.coverwithtext{
+    margin-top:4rem;
+    margin-bottom: 10rem;
+    position: relative;
+  @media screen and (max-width:375px) {
+    margin-top:1.5rem;
+  }
+    .coverImg{
+        width: 100%;
+        overflow: hidden;
+        img{
+            width: 100%;
+            filter:  opacity(.75) brightness(1);
+        }
+        @media screen and (max-width:375px) {
+            height: 300px;
+            img{
+                height: 100%;
+            }
+        }
+    }
+    .covertext{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        line-height: 2.5;
+        span{
+            background-color: #fff;
+        }
+        @media screen and (max-width:375px) {
+            font-size: .7rem;
+            width: 220px;       
+          }
+    }
+}
+
+//
+.c-dialog.v-dialog.v-dialog--active{
+    .dialog-card{
+        border: 3px #00A7BA solid !important;
+        border-radius: 20px !important;
+        background: #F3F3F3 !important;
+    }
+    .close-btn{
+        background-color: #00A7BA !important;
+        color: #fff;
+    }
+    overflow: hidden;
+    margin:0;
+    padding: 1rem;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100%;
+    max-height: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .dialog-card-text{
+        max-height: 80vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+}
+
+//dialogItem
+
+.dialogItem{
+    .dialogImg{
+        max-width: 600px;
+        width: 600px;
+        border-radius: 20px;
+        max-height: 444px;
+        height: 444px;
+        overflow: hidden;
+        display: flex;
+        @media screen and (max-width: 375px){
+            width: 275px;
+            height: 200px;
+            flex-direction: column;
+            font-size: 20px;
+            font-weight:bold; 
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .dialogdesc{
+        ul{
+            color: $fontColour;
+            list-style: none;
+            li{
+                .dialog_title{
+                    font-size: 28px;
+                    line-height: 1.5;
+                    font-weight: bold;
+                    @media screen and (max-width: 375px){
+                        font-size: 1rem;
+                    }
+                }
+                p{
+                    padding-left: 1rem;
+                    margin-bottom: 0;
+                    text-align: justify;
+                }
+                font-size: 20px;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+                @media screen and (max-width: 375px){
+                    font-size: 1rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }   
+}
+
+.long_desc{
+    color: $fontColour;
+    margin-top:1.5rem;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: justify;
+    @media screen and (max-width: 375px){
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+.intruduce{
+    flex-grow: inherit !important;
+}
+
+.v-card__text .dialog-card-text{
+
+}
+
+.navbarItemMobile{
+    height: 4000px;
+    @media screen and(max-width:375px) {
+        width: 375px;
+    }
+    .mobileItem{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        @media screen and(max-width:375px) {
+            width: 375px;
+        }
+        .mobileBox{
+            background-color: #fff;
+            border-radius: 4px;
+            border: 5px solid $titleColour;
+            width:100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding: .5rem;
+            .router-link-exact-active{
+                 border: 2px dotted #00A7BA !important;
+             }
+            a{
+                width: 50%;
+                margin-top:.5rem;
+                margin-bottom: .5rem;
+                text-decoration: none !important;
+                .mobileLinkItem{
+                    .ch{
+                        color:$fontColour
+                    }
+                    .en{
+                        color:$menuColour
+                    }
+                }
+            }
+        }
+    }
+}
+
+//RWD
+@media screen and (max-width: 375px){
+    .dots{
+        display: none;
+    }
+    .linkItems{
+        display: none !important;
+    }
+    .linkItemsMobile{
+        display: block;
+       
+    }
+    
+    .blackBackground{
+        background-color: rgba(0,0,0,0.6);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 99;
+    }
+}
