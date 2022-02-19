@@ -1,10 +1,15 @@
 <template>
   <div>
-    <Dialog v-model="dialog" :width="1240" :maxWidth="1240" :minWidth="300">
+    <Dialog
+      v-model="dialog"
+      :width="DialogWidth"
+      :maxWidth="DialogWidth"
+      :minWidth="280"
+    >
       <template #cardText>
         <v-container fluid>
           <v-row class="dialogItem d-flex">
-            <v-col :cols="12" :sm="7" :md="7" :xs="12">
+            <v-col :cols="12" :sm="12" :md="7" :xs="12" class="dialogMd">
               <div class="dialogImg" v-if="dialogitem.Picture.PictureUrl1">
                 <img
                   :src="dialogitem.Picture.PictureUrl1"
@@ -24,7 +29,7 @@
                 No Picture
               </div>
             </v-col>
-            <v-col :cols="12" :sm="5" :md="5" :xs="12">
+            <v-col :cols="12" :sm="12" :md="5" :xs="12">
               <div class="dialogdesc">
                 <ul>
                   <li>
@@ -72,14 +77,14 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-container fluid class="mt-3 dialog_r">
+        <v-container fluid class="mt-6 dialog_r">
           <v-row>
             <subTitle :title="title[0].text" :titleEn="title[0].value" />
           </v-row>
           <IntroduceBoxWithBtn :dialogData="exam_c">
             <template #boxContext>
               <div
-                class="reuse_container d-flex reuse_container_dialog"
+                class="d-flex reuse_container_dialog"
                 ref="reuseBracketTop"
                 :style="{ left: moveTop + 'px' }"
               >
@@ -93,14 +98,14 @@
             </template>
           </IntroduceBoxWithBtn>
         </v-container>
-        <v-container fluid class="mt-3 dialog_r">
+        <v-container fluid class="mt-6 dialog_r">
           <v-row>
             <subTitle :title="title[1].text" :titleEn="title[1].value" />
           </v-row>
           <IntroduceBoxWithBtn :dialogData="exam_b">
             <template #boxContext>
               <div
-                class="reuse_container d-flex reuse_container_dialog"
+                class="d-flex reuse_container_dialog"
                 ref="reuseBracket"
                 :style="{ left: moveBottom + 'px' }"
               >
@@ -116,7 +121,7 @@
         </v-container>
       </template>
     </Dialog>
-    <div class="reuse_container">
+    <div class="reuse_container reuse_container_FixedFormat">
       <div
         class="reuse_box"
         v-for="item in data"
@@ -200,6 +205,9 @@ export default {
       });
       // console.log("titleBlock", titleBlock);
       return titleBlock;
+    },
+    DialogWidth() {
+      return this.windowSize > 1440 ? 1440 : 1240;
     },
     exam_c() {
       if (this.title[0].value === "Hotel") {
@@ -407,13 +415,21 @@ export default {
       const _this = this;
       let width = _this.$refs.reuseBracketTop.clientWidth;
       console.log("width", width);
-      if (this.windowSize === 375) {
+      if (this.windowSize >= 280 && this.windowSize <= 414) {
         if (this.moveTop >= -width + 272) {
-          this.moveTop -= 270;
+          this.moveTop -= 272;
           console.log("moveTop", this.moveTop);
         }
       }
-      if (this.windowSize === 1440) {
+
+      if (this.windowSize >= 540 && this.windowSize <= 820) {
+        if (this.moveTop > -width + 457) {
+          this.moveTop -= 457;
+          console.log("movespace", this.moveTop);
+        }
+      }
+
+      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
         if (this.moveTop > -width + 934) {
           this.moveTop -= 934;
           console.log("movespace", this.moveTop);
@@ -424,12 +440,20 @@ export default {
       const _this = this;
       let width = _this.$refs.reuseBracket.clientWidth;
       console.log("width", width);
-      if (this.windowSize === 375) {
+      if (this.windowSize >= 280 && this.windowSize <= 414) {
         if (this.moveBottom > -width + 272) {
           this.moveBottom -= 270;
         }
       }
-      if (this.windowSize === 1440) {
+
+      if (this.windowSize >= 540 && this.windowSize <= 820) {
+        if (this.moveBottom > -width + 457) {
+          this.moveBottom -= 457;
+          console.log("movespace", this.moveBottom);
+        }
+      }
+
+      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
         if (this.moveBottom > -width + 934) {
           this.moveBottom -= 934;
           console.log("movespace", this.moveBottom);

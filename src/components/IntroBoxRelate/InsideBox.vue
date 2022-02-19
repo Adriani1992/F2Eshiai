@@ -1,12 +1,12 @@
 <template>
-  <div class="d-flex reuse_container">
+  <div class="d-flex insideBoxDialog">
     <div
-      class="reuse_box reuse_box_dialog"
+      class="reuse_box_dialog"
       v-for="item in Data"
       :key="item.ID"
       @click="$emit('clickItem', item)"
     >
-      <div class="reuse_top reuse_top_dialog" v-if="item.Picture.PictureUrl1">
+      <div class="reuse_top_dialog" v-if="item.Picture.PictureUrl1">
         <img
           :src="item.Picture.PictureUrl1"
           :alt="item.Picture.PictureDescription1"
@@ -15,7 +15,7 @@
       <div
         v-else
         class="
-          reuse_top reuse_top_dialog
+          reuse_top_dialog
           withoutPicture
           d-flex
           justify-center
@@ -24,10 +24,10 @@
       >
         No Picture
       </div>
-      <div class="reuse_bottom reuse_bottom_dialog">
+      <div class="reuse_bottom_dialog">
         <ul>
           <li>
-            <div class="resue_bottom_title reuse_bottom_title_dialog">
+            <div class="reuse_bottom_title_dialog">
               {{ maxLength(item.Name, 10) }}
             </div>
           </li>

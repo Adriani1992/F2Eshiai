@@ -254,14 +254,14 @@ export default {
   transform: translate(-50%, -50%);
   .top_title {
     .ch {
-      font-size: 75px;
+      font-size: 5.21vw;
       color: #fff;
     }
     .en {
-      font-size: 28.5px;
+      font-size: 1.95vw;
       color: #fff;
     }
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 540px) {
       .ch {
         font-size: 50px;
       }
@@ -271,10 +271,17 @@ export default {
     }
   }
   .searchArea {
-    width: 840px;
     margin-top: 3rem;
-    @media screen and (max-width: 375px) {
-      width: 375px;
+    @media screen and (min-width: 1440px) and (max-width: 1920px) {
+      width: 840px;
+      // justify-content: center !important;
+    }
+    @media screen and (max-width: 820px) {
+      width: 90vw;
+      // justify-content: center !important;
+    }
+    @media screen and (max-width: 540px) {
+      // width: 90vw;
       // justify-content: center !important;
     }
     input[type="text"] {
@@ -298,7 +305,11 @@ export default {
       background-color: #00a7ba;
       cursor: pointer;
       box-shadow: 1px 1px 3px #333;
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: 959px) {
+        width: 60px;
+        height: 60px;
+      }
+      @media screen and (max-width: 625px) {
         width: 40px;
         height: 40px;
       }
@@ -313,15 +324,19 @@ export default {
   }
   .location_btn_mobile {
     display: none;
-    @media screen and (max-width: 375px) {
-      display: block;
+    @media screen and (max-width: 959px) {
+      display: grid;
+      justify-content: flex-end;
       .v-icon.v-icon {
         font-size: 24px !important;
       }
     }
   }
   .location_btn_cp {
-    @media screen and (max-width: 375px) {
+    .v-icon.v-icon {
+      font-size: 36px !important;
+    }
+    @media screen and (max-width: 959px) {
       display: none;
     }
   }

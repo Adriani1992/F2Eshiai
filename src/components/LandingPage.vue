@@ -1,10 +1,10 @@
 <template>
   <v-container fluid class="scenic_section">
-    <Dialog v-model="dialog" :maxWidth="1240" :minWidth="300">
+    <Dialog v-model="dialog" :maxWidth="1240" :minWidth="280">
       <template #cardText>
         <v-container fluid>
           <v-row class="dialogItem">
-            <v-col :cols="12" :sm="7" :md="7" :xs="12">
+            <v-col :cols="12" :sm="12" :md="7" :xs="12" class="dialogMd">
               <div class="dialogImg" v-if="dialogitem.Picture.PictureUrl1">
                 <img
                   :src="dialogitem.Picture.PictureUrl1"
@@ -24,7 +24,7 @@
                 No Picture
               </div>
             </v-col>
-            <v-col :cols="12" :sm="5" :md="5" :xs="12">
+            <v-col :cols="12" :sm="12" :md="5" :xs="12">
               <div class="dialogdesc">
                 <ul>
                   <li>
@@ -78,6 +78,9 @@
       <div class="fixedContainer">
         <subTitle :title="title" :titleEn="titleEn" />
         <div class="category_content">
+          <div class="category_btn_left" @click="handleCategoryBack">
+            <v-icon color="#dfe5f0" size="112px">mdi-chevron-left </v-icon>
+          </div>
           <div class="category_slip">
             <div
               class="category_total"
@@ -86,7 +89,7 @@
             >
               <div
                 class="category_box"
-                v-for="item in data"
+                v-for="item in LandingPageData"
                 :key="item.ID"
                 @click="openDialog(item)"
               >
@@ -201,6 +204,19 @@ export default {
     window.removeEventListener("resize", this.onResize);
   },
   components: { subTitle },
+  computed: {
+    LandingPageData() {
+      return this.windowSize > 1440 ? this.data : this.data.slice(0, 10);
+    },
+    movement: {
+      get() {
+        return this.movespace;
+      },
+      set(val) {
+        this.movespace = val;
+      },
+    },
+  },
   data() {
     return {
       show: false,
@@ -220,22 +236,85 @@ export default {
     },
     handleCategory() {
       const _this = this;
+      //拿到div的值
       let width = _this.$refs.categorycoat.clientWidth;
-      console.log(width);
-      console.log("moveSpace", this.movespace);
-      if (this.windowSize === 375) {
-        if (this.movespace > -width + 367) {
-          this.movespace -= 367;
+      //一次切換一個的話就是除以10
+      let calculateX = width / 10;
+      //若首頁不是一次切換一個的話（大概顯示兩個）
+      //將width 除以一半
+      //let calculateGreater = width / 10 / 2;
+      //換算要移動多少，先將原本一次切換一個的width找到
+      //let widthGreater = width - calculateX;
+      let widthGreaterMore = width - calculateX;
+      widthGreaterMore = widthGreaterMore - calculateX;
+      //再將它除以二
+      //widthGreater = widthGreater / 2;
+      //檢調多餘的部分
+      let widthGreater = widthGreaterMore;
+      console.log("x", width);
+      //width = width - calculateX;
+      if (this.windowSize < 375) {
+        if (this.movespace > -width) {
+          this.movespace = (this.movespace -= calculateX).toFixed(1);
         }
       }
-      if (this.windowSize <= 1920) {
-        if (this.movespace > -width + 1728) {
-          this.movespace -= 1728;
+      if (this.windowSize >= 375 && this.windowSize <= 625) {
+        if (this.movespace > -width) {
+          this.movespace = (this.movespace -= calculateX).toFixed(1);
         }
       }
-      // if (this.movespace > -width + 1152) {
-      //   this.movespace -= 1152;
-      // }
+      if (this.windowSize > 625 && this.windowSize <= 1280) {
+        if (this.movespace > -widthGreater) {
+          this.movespace = (this.movespace -= calculateX).toFixed(1);
+        }
+      }
+      if (this.windowSize > 1280 && this.windowSize <= 1920) {
+        if (this.movespace > -widthGreaterMore) {
+          this.movespace = (this.movespace -= calculateX).toFixed(1);
+        }
+      }
+    },
+    handleCategoryBack() {
+      const _this = this;
+      console.log("moveSpaceA", this.movespace);
+      let width = _this.$refs.categorycoat.clientWidth;
+      let calculateX = width / 10;
+      width = width - calculateX;
+      console.log("calculateX", calculateX);
+      console.log("width", width);
+      this.movespace = Number(this.movespace);
+      if (this.windowSize < 375) {
+        if (this.movespace > -width) {
+          //
+        }
+      }
+      if (this.windowSize >= 375 && this.windowSize <= 625) {
+        if (this.movespace >= -width) {
+          if (this.movespace === 0) {
+            return;
+          } else {
+            this.movespace = (this.movespace += calculateX).toFixed(1);
+          }
+        }
+      }
+      if (this.windowSize >= 768 && this.windowSize <= 820) {
+        if (this.movespace >= -width + 576) {
+          if (this.movespace === 0) {
+            return;
+          } else {
+            this.movespace += 576;
+          }
+        }
+      }
+      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
+        if (this.movespace >= -width + 1152) {
+          if (this.movespace === 0) {
+            return;
+          } else {
+            this.movespace += 1152;
+          }
+        }
+      }
     },
     maxLength(str, length) {
       // console.log(str);

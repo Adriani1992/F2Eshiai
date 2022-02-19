@@ -3,7 +3,7 @@
     <CategoryItem />
     <v-container fluid v-if="Content.length !== 0">
       <subTitle :title="'符合項目如以下'" />
-      <v-row>
+      <v-row class="fixedFormat">
         <IntroduceBox :data="visiblePages" />
       </v-row>
       <v-row class="pagenation-top d-flex justify-center">
@@ -81,7 +81,7 @@ export default {
       // let windowWidth =
       if (this.Content.length !== 0) {
         length =
-          this.windowSize <= 540
+          this.windowSize <= 625
             ? Math.ceil(this.Content.length / 5)
             : Math.ceil(this.Content.length / 20);
       }
@@ -89,12 +89,14 @@ export default {
     },
     visiblePages() {
       let data = null;
+
       if (this.Content.length !== 0 || this.Content !== undefined) {
         data =
-          this.windowSize <= 540
+          this.windowSize <= 625
             ? this.Content.slice((this.page - 1) * 5, this.page * 5)
             : this.Content.slice((this.page - 1) * 20, this.page * 20);
       }
+
       // console.log("data", data);
       return data;
     },

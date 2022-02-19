@@ -1,17 +1,21 @@
 <template>
-  <div class="dialogBox">
-    <div
-      class="reuseCoat"
-      :style="{ width: dialogItemWidth * dialogData.length + 'px' }"
-    >
-      <slot name="boxContext"> </slot>
-    </div>
-    <slot name="boxAction">
-      <div class="r_btn" @click="handleV">
-        <v-icon color="#dfe5f0" size="112px">mdi-chevron-right </v-icon>
+  <v-row class="mobile_dialogBox">
+    <div class="dialogBox">
+      <div
+        class="reuseCoat"
+        :style="{ width: dialogItemWidth * dialogData.length + 'vw' }"
+      >
+        <slot name="boxContext"> </slot>
       </div>
-    </slot>
-  </div>
+      <slot name="boxAction">
+        <div class="r_btn" @click="handleV">
+          <v-icon color="#dfe5f0" size="112px" class="rightBTN"
+            >mdi-chevron-right
+          </v-icon>
+        </div>
+      </slot>
+    </div>
+  </v-row>
 </template>
 
 <script>
@@ -32,7 +36,8 @@ export default {
     },
     dialogItemWidth() {
       let d_width = null;
-      d_width = this.windowSize <= 540 ? 272 : 457;
+
+      d_width = this.windowSize <= 625 ? 68 : 37.7;
       return d_width;
     },
   },

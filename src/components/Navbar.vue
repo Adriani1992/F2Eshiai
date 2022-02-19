@@ -89,11 +89,18 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 160px;
+  height: 11.11vw;
   display: flex;
   align-items: center;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 959px) {
+    height: 91px;
+  }
+  @media screen and (max-width: 625px) {
     height: 64px;
+    justify-content: space-between;
+    .menuItem {
+      margin-right: 1.5rem;
+    }
   }
   .websiteName {
     cursor: pointer;

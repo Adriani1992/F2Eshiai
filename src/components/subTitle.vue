@@ -31,21 +31,21 @@ export default {
 <style lang="scss">
 .category_title {
   margin-left: 4rem;
-  @media screen and(max-width:375px) {
-    margin-left: 2rem;
+  @media screen and(max-width:625px) {
+    margin-left: 8.53vw;
   }
   .Sky_Lantern {
     fill: #00a7ba;
-    font-size: 48px;
-    @media screen and(max-width:375px) {
-      font-size: 12px;
-    }
+    font-size: 3.33vw;
+    // @media screen and(max-width:625px) {
+    //   font-size: 12px;
+    // }
   }
   .category_subtitle {
     font-size: 30px;
     color: #00a7ba;
-    @media screen and(max-width:375px) {
-      font-size: 1rem;
+    @media screen and(max-width:625px) {
+      font-size: 4.25vw;
     }
   }
 }

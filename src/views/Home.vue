@@ -83,7 +83,7 @@ export default {
         .get(
           `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/${
             this.cityItems[this.randomNum].value
-          }?$top=10&$format=JSON`,
+          }?$top=12&$format=JSON`,
           {
             headers: relateFunction.GetAuthorizationHeader(),
           }
@@ -102,7 +102,7 @@ export default {
         .get(
           `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${
             this.cityItems[this.randomNum].value
-          }?$top=10&$format=JSON`,
+          }?$top=12&$format=JSON`,
           {
             headers: relateFunction.GetAuthorizationHeader(),
           }
