@@ -1,4 +1,5 @@
 module.exports = {
+
   transpileDependencies: ["vuetify"],
   chainWebpack: config => {
     config.module.rules.delete("svg");
@@ -12,6 +13,7 @@ module.exports = {
         },
       ],
     }
-  }
+  },
+  publicPath: '/F2Eshiai/',
 };
 
