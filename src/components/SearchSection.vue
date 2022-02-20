@@ -254,14 +254,22 @@ export default {
   transform: translate(-50%, -50%);
   .top_title {
     .ch {
-      font-size: 5.21vw;
+      font-size: 75px;
       color: #fff;
     }
     .en {
-      font-size: 1.95vw;
+      font-size: 28px;
       color: #fff;
     }
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 1280px) {
+      .ch {
+        font-size: 5.21vw;
+      }
+      .en {
+        font-size: 1.94vw;
+      }
+    }
+    @media screen and (max-width: 625px) {
       .ch {
         font-size: 50px;
       }

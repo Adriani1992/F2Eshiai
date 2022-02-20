@@ -18,6 +18,12 @@ export default {};
 <style lang="scss" scoped>
 .footer_item {
   height: 121.4px !important;
+  @media screen and (max-width: 1280px) {
+    height: 8.43vw !important;
+  }
+  @media screen and (max-width: 625px) {
+    height: 121.4px !important;
+  }
 }
 .footer_word {
   font-size: 1rem;

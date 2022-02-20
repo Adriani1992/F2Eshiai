@@ -92,7 +92,7 @@ export default {
   height: 11.11vw;
   display: flex;
   align-items: center;
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1280px) {
     height: 91px;
   }
   @media screen and (max-width: 625px) {

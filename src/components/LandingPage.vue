@@ -241,31 +241,32 @@ export default {
       //一次切換一個的話就是除以10
       let calculateX = width / 10;
       //若首頁不是一次切換一個的話（大概顯示兩個）
-      //將width 除以一半
-      //let calculateGreater = width / 10 / 2;
       //換算要移動多少，先將原本一次切換一個的width找到
-      //let widthGreater = width - calculateX;
       let widthGreaterMore = width - calculateX;
       widthGreaterMore = widthGreaterMore - calculateX;
-      //再將它除以二
-      //widthGreater = widthGreater / 2;
-      //檢調多餘的部分
-      let widthGreater = widthGreaterMore;
-      console.log("x", width);
-      //width = width - calculateX;
+      //畫面一次顯示兩組
+      let widthOne = calculateX * 2;
+      //將多餘的移除掉
+      let widthTest = width - widthOne;
+      widthTest = width - widthOne;
+      // //檢調多餘的部分
+      console.log("x", widthTest);
+      console.log("widthOne", widthOne);
+
+      width = width - calculateX;
       if (this.windowSize < 375) {
         if (this.movespace > -width) {
           this.movespace = (this.movespace -= calculateX).toFixed(1);
         }
       }
       if (this.windowSize >= 375 && this.windowSize <= 625) {
-        if (this.movespace > -width) {
+        if (this.movespace > -widthGreaterMore) {
           this.movespace = (this.movespace -= calculateX).toFixed(1);
         }
       }
       if (this.windowSize > 625 && this.windowSize <= 1280) {
-        if (this.movespace > -widthGreater) {
-          this.movespace = (this.movespace -= calculateX).toFixed(1);
+        if (this.movespace > -widthTest + calculateX) {
+          this.movespace = (this.movespace -= widthOne).toFixed(1);
         }
       }
       if (this.windowSize > 1280 && this.windowSize <= 1920) {
@@ -285,7 +286,13 @@ export default {
       this.movespace = Number(this.movespace);
       if (this.windowSize < 375) {
         if (this.movespace > -width) {
-          //
+          if (this.movespace >= -width) {
+            if (this.movespace === 0) {
+              return;
+            } else {
+              this.movespace = (this.movespace += calculateX).toFixed(1);
+            }
+          }
         }
       }
       if (this.windowSize >= 375 && this.windowSize <= 625) {
@@ -297,21 +304,21 @@ export default {
           }
         }
       }
-      if (this.windowSize >= 768 && this.windowSize <= 820) {
-        if (this.movespace >= -width + 576) {
-          if (this.movespace === 0) {
+      if (this.windowSize > 625 && this.windowSize <= 1280) {
+        if (this.movespace >= -width) {
+          if (this.movespace === 0 || this.movespace > 1) {
             return;
           } else {
-            this.movespace += 576;
+            this.movespace = (this.movespace += calculateX).toFixed(1);
           }
         }
       }
-      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
-        if (this.movespace >= -width + 1152) {
+      if (this.windowSize > 1280 && this.windowSize <= 1920) {
+        if (this.movespace >= -width) {
           if (this.movespace === 0) {
             return;
           } else {
-            this.movespace += 1152;
+            this.movespace = (this.movespace += calculateX).toFixed(1);
           }
         }
       }

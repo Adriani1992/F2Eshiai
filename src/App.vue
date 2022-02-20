@@ -39,7 +39,11 @@ export default {
   height: 80px;
   border-radius: 50%;
   background-color: #00a7ba;
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 1280px) {
+    width: 5.55vw;
+    height: 5.55vw;
+  }
+  @media screen and (max-width: 625px) {
     width: 28px;
     height: 28px;
   }
@@ -48,15 +52,21 @@ export default {
     .v-icon.v-icon {
       font-size: 28px !important;
       color: #fff;
-      @media screen and (max-width: 540px) {
+      @media screen and (max-width: 1280px) {
+        font-size: 1.94vw !important;
+      }
+      @media screen and (max-width: 625px) {
         font-size: 10px !important;
       }
     }
     color: #fff;
     font-size: 28px;
     font-weight: bold;
-    @media screen and (max-width: 540px) {
-      font-size: 10px;
+    @media screen and (max-width: 1280px) {
+      font-size: 1.94vw;
+    }
+    @media screen and (max-width: 625px) {
+      font-size: 12px;
     }
   }
 }

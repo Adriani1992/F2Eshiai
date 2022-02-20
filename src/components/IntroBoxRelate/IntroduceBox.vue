@@ -92,8 +92,12 @@
               </div>
             </template>
             <template #boxAction>
-              <div class="r_btn" @click="handleMoveTop">
-                <v-icon color="#dfe5f0" size="112px">mdi-chevron-right </v-icon>
+              <div
+                class="r_btn"
+                @click="handleMoveTop"
+                v-if="exam_c.length !== 0"
+              >
+                <v-icon color="#dfe5f0" size="96px">mdi-chevron-right </v-icon>
               </div>
             </template>
           </IntroduceBoxWithBtn>
@@ -113,8 +117,8 @@
               </div>
             </template>
             <template #boxAction>
-              <div class="r_btn" @click="handleMove">
-                <v-icon color="#dfe5f0" size="112px">mdi-chevron-right </v-icon>
+              <div class="r_btn" @click="handleMove" v-if="exam_b.length !== 0">
+                <v-icon color="#dfe5f0" size="96px">mdi-chevron-right </v-icon>
               </div>
             </template>
           </IntroduceBoxWithBtn>
@@ -240,26 +244,11 @@ export default {
       }
       return false;
     },
-    dialogItemWidth() {
-      let d_width = null;
-      d_width = this.windowSize <= 540 ? 274 : 457;
-      return d_width;
-    },
   },
   props: {
     data: {
       require: true,
       type: Array,
-      default: () => {
-        [
-          {
-            Name: "Adriani",
-            OpenTime: "7/24",
-            Phone: "09XX-XXX-XXX",
-            Address: "Earth",
-          },
-        ];
-      },
     },
   },
   data() {
@@ -280,14 +269,6 @@ export default {
     examinate(KAS) {
       KAS();
     },
-    // trytry(item) {
-    //   console.log("item", item);
-    //   this.dialogitem = { ...item };
-    //   this.dialog = true;
-    //   this.moveTop = 0;
-    //   this.moveBottom = 0;
-    //   this.gettingOther(item);
-    // },
     openDialog(item) {
       console.log("item", item);
       this.dialogitem = { ...item };
@@ -415,48 +396,84 @@ export default {
       const _this = this;
       let width = _this.$refs.reuseBracketTop.clientWidth;
       console.log("width", width);
-      if (this.windowSize >= 280 && this.windowSize <= 414) {
-        if (this.moveTop >= -width + 272) {
-          this.moveTop -= 272;
+      //拿到不同螢幕大小的vw
+      let widthCaculateUnit = this.windowSize / 100;
+      //若螢幕小於625那乘以70
+      let calculateX = widthCaculateUnit * 70;
+      //若螢幕大於625則乘40
+      let calculateY = widthCaculateUnit * 40;
+      //若一次要移動兩個選項則要減兩倍的calculateY
+      let widthTwice = calculateY * 2;
+      //若1440~1920的時候
+      let widthGreater = 418.05 * this.exam_c.length;
+      let greaterTwice = 418.05 * 2;
+      console.log("calculateX", calculateX);
+      console.log("widthCaculateUnit", widthCaculateUnit);
+      if (this.windowSize < 375) {
+        if (this.moveTop >= -width + calculateX) {
+          this.moveTop = (this.moveTop -= calculateX).toFixed(1);
+          console.log("moveTop", this.moveTop);
+        }
+      }
+      if (this.windowSize >= 375 && this.windowSize <= 625) {
+        if (this.moveTop >= -width + calculateX) {
+          this.moveTop = (this.moveTop -= calculateX).toFixed(1);
           console.log("moveTop", this.moveTop);
         }
       }
 
-      if (this.windowSize >= 540 && this.windowSize <= 820) {
-        if (this.moveTop > -width + 457) {
-          this.moveTop -= 457;
-          console.log("movespace", this.moveTop);
+      if (this.windowSize > 625 && this.windowSize <= 1280) {
+        if (this.moveTop >= -width + widthTwice) {
+          this.moveTop = (this.moveTop -= calculateY).toFixed(1);
+          console.log("moveTop", this.moveTop);
         }
       }
 
-      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
-        if (this.moveTop > -width + 934) {
-          this.moveTop -= 934;
-          console.log("movespace", this.moveTop);
+      if (this.windowSize > 1280 && this.windowSize <= 1920) {
+        if (this.moveTop >= -widthGreater + greaterTwice) {
+          this.moveTop = (this.moveTop -= 418.05).toFixed(1);
+          console.log("moveTop", this.moveTop);
         }
       }
     },
     handleMove() {
       const _this = this;
       let width = _this.$refs.reuseBracket.clientWidth;
+      let widthCaculateUnit = this.windowSize / 100;
+      //若螢幕小於625那乘以70
+      let calculateX = widthCaculateUnit * 70;
       console.log("width", width);
-      if (this.windowSize >= 280 && this.windowSize <= 414) {
-        if (this.moveBottom > -width + 272) {
-          this.moveBottom -= 270;
+      //若螢幕大於625則乘40
+      let calculateY = widthCaculateUnit * 40;
+      //若一次要移動兩個選項則要減兩倍的calculateY
+      let widthTwice = calculateY * 2;
+      //若1440~1920的時候
+      let widthGreater = 418.05 * this.exam_b.length;
+      let greaterTwice = 418.05 * 2;
+      if (this.windowSize < 375) {
+        if (this.moveBottom >= -width + calculateX) {
+          this.moveBottom = (this.moveBottom -= calculateX).toFixed(1);
+          console.log("moveTop", this.moveBottom);
+        }
+      }
+      if (this.windowSize >= 375 && this.windowSize <= 625) {
+        if (this.moveBottom >= -width + calculateX) {
+          this.moveBottom = (this.moveBottom -= calculateX).toFixed(1);
+          console.log("moveTop", this.moveBottom);
         }
       }
 
-      if (this.windowSize >= 540 && this.windowSize <= 820) {
-        if (this.moveBottom > -width + 457) {
-          this.moveBottom -= 457;
-          console.log("movespace", this.moveBottom);
+      if (this.windowSize > 625 && this.windowSize < 1440) {
+        if (this.moveBottom >= -width + widthTwice) {
+          this.moveBottom = (this.moveBottom -= calculateY).toFixed(1);
+          console.log("moveTop", this.moveBottom);
         }
       }
 
-      if (this.windowSize >= 1440 && this.windowSize <= 1920) {
-        if (this.moveBottom > -width + 934) {
-          this.moveBottom -= 934;
-          console.log("movespace", this.moveBottom);
+      if (this.windowSize > 1280 && this.windowSize <= 1920) {
+        if (this.moveBottom >= -widthGreater + greaterTwice) {
+          this.moveBottom = (this.moveBottom -= 418.05).toFixed(1);
+          console.log("moveTop", this.moveBottom);
         }
       }
     },
