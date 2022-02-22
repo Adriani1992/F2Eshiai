@@ -1,31 +1,72 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app>
+    <Navbar />
+    <SearchSection />
+    <v-main>
+      <router-view />
+    </v-main>
+    <div class="circle" @click="suspectHeight">
+      <div class="up text-center d-flex flex-column justify-center">
+        <v-icon>mdi-chevron-up</v-icon>
+        UP
+      </div>
     </div>
-    <router-view />
-  </div>
+    <Footer />
+  </v-app>
 </template>
 
+<script>
+import Navbar from "@/components/Navbar";
+import SearchSection from "@/components/SearchSection";
+import Footer from "@/components/Footer";
+export default {
+  name: "App",
+  components: { Navbar, Footer, SearchSection },
+  data: () => ({
+    //
+  }),
+  methods: {
+    suspectHeight() {
+      window.scrollTo(0, 0);
+      console.log(window.scrollY);
+    },
+  },
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #00a7ba;
+  @media screen and (max-width: 1280px) {
+    width: 5.55vw;
+    height: 5.55vw;
+  }
+  @media screen and (max-width: 625px) {
+    width: 28px;
+    height: 28px;
+  }
+  cursor: pointer;
+  .up {
+    .v-icon.v-icon {
+      font-size: 28px !important;
+      color: #fff;
+      @media screen and (max-width: 1280px) {
+        font-size: 1.94vw !important;
+      }
+      @media screen and (max-width: 625px) {
+        font-size: 10px !important;
+      }
+    }
+    color: #fff;
+    font-size: 28px;
     font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    @media screen and (max-width: 1280px) {
+      font-size: 1.94vw;
+    }
+    @media screen and (max-width: 625px) {
+      font-size: 12px;
     }
   }
 }
