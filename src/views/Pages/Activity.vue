@@ -9,7 +9,7 @@
           '想知道台灣哪裡有令人興奮的活動嗎？',
           '快利用上面的搜尋區塊搜尋吧！',
         ],
-        imageURL: 'image/Activity01.jpg',
+        imageURL: '/image/Activity01.jpg',
       },
     }"
   >
