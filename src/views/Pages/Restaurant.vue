@@ -9,7 +9,7 @@
           '想知道哪裡還有令人食指大動的餐廳嗎？',
           '快利用上面的搜尋區塊搜尋吧！',
         ],
-        imageURL: '/image/Food01.jpg',
+        imageURL: 'image/Food01.jpg',
       },
     }"
   >

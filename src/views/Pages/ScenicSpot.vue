@@ -9,7 +9,7 @@
           '想知道台灣哪裡還有美麗的地方嗎？',
           '快利用上面的搜尋區塊搜尋吧！',
         ],
-        imageURL: '/image/building01.jpg',
+        imageURL: 'image/building01.jpg',
       },
     }"
   >
