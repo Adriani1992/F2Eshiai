@@ -21,6 +21,7 @@
           justify-center
           align-center
         "
+        :class="seasonTopic"
       >
         No Picture
       </div>
@@ -60,6 +61,27 @@ export default {
   props: {
     Data: {
       type: Array,
+    },
+  },
+  computed: {
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
     },
   },
   methods: {

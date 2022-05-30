@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    topic: 'Summer',
     restaurantData: [],
     scenicData: [],
     scenicSpot: [],
@@ -77,6 +78,10 @@ export default new Vuex.Store({
     handleReset(state, data) {
       state.searchitem.selectCategory = data
       state.searchitem.selectCity = data
+    },
+    //handle Topic
+    handleTopic(state, data) {
+      state.topic = data;
     }
   },
   actions: {
@@ -149,6 +154,10 @@ export default new Vuex.Store({
     //handle Reset
     setResetSelect({ commit }, data) {
       commit('handleReset', data)
+    },
+    //set Topic
+    setTopic({ commit }, data) {
+      commit('handleTopic', data)
     }
   },
   modules: {},

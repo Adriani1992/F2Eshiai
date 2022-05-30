@@ -2,13 +2,20 @@
   <v-dialog v-if="show" content-class="c-dialog" v-model="show">
     <v-card
       class="dialog-card"
+      :class="seasonTopic"
       :maxWidth="maxWidth"
       :minWidth="minWidth"
       :width="width"
     >
       <v-card-title class="dialog-card-title" color="transparent">
         <v-spacer></v-spacer>
-        <v-btn ref="closeBtn" class="close-btn" icon @click="close">
+        <v-btn
+          ref="closeBtn"
+          class="close-btn"
+          icon
+          @click="close"
+          :class="seasonTopic"
+        >
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-card-title>
@@ -71,6 +78,25 @@ export default {
       set(val) {
         this.$emit("input", val);
       },
+    },
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
     },
   },
   methods: {

@@ -45,7 +45,7 @@ export default {
           this.$set(i, "ID", i.RestaurantID);
         }
       });
-      console.log("data", data);
+      // console.log("data", data);
       return this.$store.state.restaurantData;
     },
     ScenicSpotData() {
@@ -59,7 +59,7 @@ export default {
       return this.$store.state.scenicData;
     },
     randomNum() {
-      return Math.floor(Math.random() * this.cityItems.length + 1);
+      return Math.floor(Math.random() * this.cityItems.length);
     },
     cityItems() {
       return cityItems;
@@ -72,8 +72,8 @@ export default {
     handleCategory() {
       const _this = this;
       let width = _this.$refs.categorycoat.clientWidth;
-      console.log(width);
-      console.log("moveSpace", this.movespace);
+      // console.log(width);
+      // console.log("moveSpace", this.movespace);
       if (this.movespace > -width + 1152) {
         this.movespace -= 1152;
       }
@@ -90,7 +90,7 @@ export default {
         )
         .then((response) => {
           // this.randomSelectNumber = [...response.data];
-          console.log(response.data);
+          // console.log(response.data);
           this.$store.dispatch("setRestaurantData", response.data);
         })
         .catch((err) => {
@@ -109,7 +109,7 @@ export default {
         )
         .then((response) => {
           // this.randomSelectNumber = [...response.data];
-          console.log(response.data);
+          // console.log(response.data);
           if (response.data.length !== 0) {
             this.$store.dispatch("setScenicSpotData", response.data);
           } else {
