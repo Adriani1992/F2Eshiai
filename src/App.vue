@@ -5,7 +5,7 @@
     <v-main>
       <router-view />
     </v-main>
-    <div class="circle" @click="suspectHeight">
+    <div class="circle" @click="suspectHeight" :class="seasonTopic">
       <div class="up text-center d-flex flex-column justify-center">
         <v-icon>mdi-chevron-up</v-icon>
         UP
@@ -22,6 +22,27 @@ import Footer from "@/components/Footer";
 export default {
   name: "App",
   components: { Navbar, Footer, SearchSection },
+  computed: {
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
+    },
+  },
   data: () => ({
     //
   }),
@@ -38,7 +59,7 @@ export default {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #00a7ba;
+
   @media screen and (max-width: 1280px) {
     width: 5.55vw;
     height: 5.55vw;
@@ -69,5 +90,19 @@ export default {
       font-size: 12px;
     }
   }
+}
+.circle.Summer {
+  background-color: #00a7ba;
+}
+.circle.Spring {
+  background-color: #fcc9b9;
+}
+
+.circle.Autumn {
+  background-color: #9c2706;
+}
+
+.circle.Winter {
+  background-color: #22283b;
 }
 </style>

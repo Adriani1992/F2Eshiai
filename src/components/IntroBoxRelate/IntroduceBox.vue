@@ -25,6 +25,7 @@
                   justify-center
                   align-center
                 "
+                :class="seasonTopic"
               >
                 No Picture
               </div>
@@ -81,21 +82,21 @@
           <v-row>
             <subTitle :title="title[0].text" :titleEn="title[0].value" />
           </v-row>
-          <IntroduceBoxWithBtn :dialogData="exam_c">
+          <IntroduceBoxWithBtn :dialogData="upData">
             <template #boxContext>
               <div
                 class="d-flex reuse_container_dialog"
                 ref="reuseBracketTop"
                 :style="{ left: moveTop + 'px' }"
               >
-                <InsideBox :Data="exam_c" @clickItem="openDialog" />
+                <InsideBox :Data="upData" @clickItem="openDialog" />
               </div>
             </template>
             <template #boxAction>
               <div
                 class="r_btn"
                 @click="handleMoveTop"
-                v-if="exam_c.length !== 0"
+                v-if="upData.length !== 0"
               >
                 <v-icon color="#dfe5f0" size="96px">mdi-chevron-right </v-icon>
               </div>
@@ -106,18 +107,22 @@
           <v-row>
             <subTitle :title="title[1].text" :titleEn="title[1].value" />
           </v-row>
-          <IntroduceBoxWithBtn :dialogData="exam_b">
+          <IntroduceBoxWithBtn :dialogData="bottomData">
             <template #boxContext>
               <div
                 class="d-flex reuse_container_dialog"
                 ref="reuseBracket"
                 :style="{ left: moveBottom + 'px' }"
               >
-                <InsideBox :Data="exam_b" @clickItem="openDialog" />
+                <InsideBox :Data="bottomData" @clickItem="openDialog" />
               </div>
             </template>
             <template #boxAction>
-              <div class="r_btn" @click="handleMove" v-if="exam_b.length !== 0">
+              <div
+                class="r_btn"
+                @click="handleMove"
+                v-if="bottomData.length !== 0"
+              >
                 <v-icon color="#dfe5f0" size="96px">mdi-chevron-right </v-icon>
               </div>
             </template>
@@ -141,6 +146,7 @@
         <div
           v-else
           class="reuse_top withoutPicture d-flex justify-center align-center"
+          :class="seasonTopic"
         >
           No Picture
         </div>
@@ -202,7 +208,7 @@ export default {
   computed: {
     title() {
       let includeWord = this.$route.name;
-      console.log(includeWord);
+      // console.log(includeWord);
       let titleBlock = this.shuffleArray(categoryItems);
       titleBlock = titleBlock.filter((i) => {
         return i.value !== includeWord;
@@ -213,7 +219,7 @@ export default {
     DialogWidth() {
       return this.windowSize > 1440 ? 1440 : 1240;
     },
-    exam_c() {
+    upData() {
       if (this.title[0].value === "Hotel") {
         // console.log("hi");
         return this.relateHotel;
@@ -229,7 +235,7 @@ export default {
       }
       return false;
     },
-    exam_b() {
+    bottomData() {
       if (this.title[1].value === "Hotel") {
         return this.relateHotel;
       }
@@ -243,6 +249,25 @@ export default {
         return this.relateSpot;
       }
       return false;
+    },
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
     },
   },
   props: {
@@ -270,7 +295,7 @@ export default {
       KAS();
     },
     openDialog(item) {
-      console.log("item", item);
+      // console.log("item", item);
       this.dialogitem = { ...item };
       this.dialog = true;
       this.moveTop = 0;
@@ -358,16 +383,16 @@ export default {
               });
               this.relateSpot = cloneDeep(data1.data);
             }
-            console.log(
-              "data1",
-              data1,
-              "data2",
-              data2,
-              "data3",
-              data3,
-              "data4",
-              data4
-            );
+            // console.log(
+            //   "data1",
+            //   data1,
+            //   "data2",
+            //   data2,
+            //   "data3",
+            //   data3,
+            //   "data4",
+            //   data4
+            // );
           })
         )
         .catch((err) => {
@@ -375,16 +400,16 @@ export default {
         });
     },
     shuffleArray(array) {
-      let currentIndex = array.length,
-        randomIndex;
+      let currentIndex = array.length;
+      let randomIndex;
 
-      // While there remain elements to shuffle...
+      // 若想將剩餘的選項打亂
       while (currentIndex != 0) {
-        // Pick a remaining element...
+        // 隨機選一個
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // And swap it with the current element.
+        //與現在的項目互相交換位置
         [array[currentIndex], array[randomIndex]] = [
           array[randomIndex],
           array[currentIndex],
@@ -392,10 +417,11 @@ export default {
       }
       return array;
     },
+    //Dialog中上面那排移動的按鈕功能
     handleMoveTop() {
       const _this = this;
       let width = _this.$refs.reuseBracketTop.clientWidth;
-      console.log("width", width);
+      //console.log("width", width);
       //拿到不同螢幕大小的vw
       let widthCaculateUnit = this.windowSize / 100;
       //若螢幕小於625那乘以70
@@ -405,75 +431,67 @@ export default {
       //若一次要移動兩個選項則要減兩倍的calculateY
       let widthTwice = calculateY * 2;
       //若1440~1920的時候
-      let widthGreater = 418.05 * this.exam_c.length;
+      let widthGreater = 418.05 * this.upData.length;
       let greaterTwice = 418.05 * 2;
-      console.log("calculateX", calculateX);
-      console.log("widthCaculateUnit", widthCaculateUnit);
+      //當視窗小於375
       if (this.windowSize < 375) {
         if (this.moveTop >= -width + calculateX) {
           this.moveTop = (this.moveTop -= calculateX).toFixed(1);
-          console.log("moveTop", this.moveTop);
         }
       }
       if (this.windowSize >= 375 && this.windowSize <= 625) {
         if (this.moveTop >= -width + calculateX) {
           this.moveTop = (this.moveTop -= calculateX).toFixed(1);
-          console.log("moveTop", this.moveTop);
         }
       }
 
       if (this.windowSize > 625 && this.windowSize <= 1280) {
         if (this.moveTop >= -width + widthTwice) {
           this.moveTop = (this.moveTop -= calculateY).toFixed(1);
-          console.log("moveTop", this.moveTop);
         }
       }
 
       if (this.windowSize > 1280 && this.windowSize <= 1920) {
         if (this.moveTop >= -widthGreater + greaterTwice) {
           this.moveTop = (this.moveTop -= 418.05).toFixed(1);
-          console.log("moveTop", this.moveTop);
         }
       }
     },
+    //Dialog中下面那排移動的按鈕功能
     handleMove() {
       const _this = this;
       let width = _this.$refs.reuseBracket.clientWidth;
       let widthCaculateUnit = this.windowSize / 100;
       //若螢幕小於625那乘以70
       let calculateX = widthCaculateUnit * 70;
-      console.log("width", width);
+      //console.log("width", width);
       //若螢幕大於625則乘40
       let calculateY = widthCaculateUnit * 40;
       //若一次要移動兩個選項則要減兩倍的calculateY
       let widthTwice = calculateY * 2;
       //若1440~1920的時候
-      let widthGreater = 418.05 * this.exam_b.length;
+      let widthGreater = 418.05 * this.bottomData.length;
       let greaterTwice = 418.05 * 2;
       if (this.windowSize < 375) {
         if (this.moveBottom >= -width + calculateX) {
           this.moveBottom = (this.moveBottom -= calculateX).toFixed(1);
-          console.log("moveTop", this.moveBottom);
         }
       }
       if (this.windowSize >= 375 && this.windowSize <= 625) {
         if (this.moveBottom >= -width + calculateX) {
           this.moveBottom = (this.moveBottom -= calculateX).toFixed(1);
-          console.log("moveTop", this.moveBottom);
         }
       }
 
       if (this.windowSize > 625 && this.windowSize < 1440) {
         if (this.moveBottom >= -width + widthTwice) {
           this.moveBottom = (this.moveBottom -= calculateY).toFixed(1);
-          console.log("moveTop", this.moveBottom);
         }
       }
 
       if (this.windowSize > 1280 && this.windowSize <= 1920) {
         if (this.moveBottom >= -widthGreater + greaterTwice) {
           this.moveBottom = (this.moveBottom -= 418.05).toFixed(1);
-          console.log("moveTop", this.moveBottom);
         }
       }
     },

@@ -36,7 +36,7 @@ export default {
     },
     dialogItemWidth() {
       let d_width = null;
-
+      //若windows size小於等於625
       d_width = this.windowSize <= 625 ? 68 : 37.7;
       return d_width;
     },
@@ -72,10 +72,10 @@ export default {
     handleV() {
       const _this = this;
       let width = _this.$refs.reuseBracketTop.clientWidth;
-      console.log("width", width);
+      // console.log("width", width);
       if (this.movespace > -width + 1675) {
         this.movespace -= 850;
-        console.log("movespace", this.movespace);
+        // console.log("movespace", this.movespace);
       }
     },
   },

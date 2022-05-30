@@ -9,7 +9,7 @@
           '想知道台灣有哪些不錯的飯店嗎？',
           '快利用上面的搜尋區塊搜尋吧！',
         ],
-        imageURL: '/image/Hotel01.jpg',
+        imageURL: './image/Hotel01.jpg',
       },
     }"
   >

@@ -20,6 +20,7 @@
                   justify-center
                   align-center
                 "
+                :class="seasonTopic"
               >
                 No Picture
               </div>
@@ -107,6 +108,7 @@
                     justify-center
                     align-center
                   "
+                  :class="seasonTopic"
                   v-else
                 >
                   No Picture
@@ -187,8 +189,8 @@ export default {
   watch: {
     windowSize: {
       immediate: true,
-      handler(newv, oldv) {
-        console.log("newv", newv, "oldv", oldv);
+      handler(newv) {
+        // console.log("newv", newv, "oldv", oldv);
         if (newv) {
           this.movespace = 0;
         }
@@ -215,6 +217,25 @@ export default {
       set(val) {
         this.movespace = val;
       },
+    },
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
     },
   },
   data() {
@@ -250,8 +271,8 @@ export default {
       let widthTest = width - widthOne;
       widthTest = width - widthOne;
       // //檢調多餘的部分
-      console.log("x", widthTest);
-      console.log("widthOne", widthOne);
+      // console.log("x", widthTest);
+      // console.log("widthOne", widthOne);
 
       width = width - calculateX;
       if (this.windowSize < 375) {
@@ -265,7 +286,10 @@ export default {
         }
       }
       if (this.windowSize > 625 && this.windowSize <= 1280) {
-        if (this.movespace > -widthTest + calculateX) {
+        if (
+          this.movespace > -widthTest + calculateX &&
+          this.LandingPageData.length !== 2
+        ) {
           this.movespace = (this.movespace -= widthOne).toFixed(1);
         }
       }
@@ -277,12 +301,12 @@ export default {
     },
     handleCategoryBack() {
       const _this = this;
-      console.log("moveSpaceA", this.movespace);
+      // console.log("moveSpaceA", this.movespace);
       let width = _this.$refs.categorycoat.clientWidth;
       let calculateX = width / 10;
       width = width - calculateX;
-      console.log("calculateX", calculateX);
-      console.log("width", width);
+      // console.log("calculateX", calculateX);
+      // console.log("width", width);
       this.movespace = Number(this.movespace);
       if (this.windowSize < 375) {
         if (this.movespace > -width) {
@@ -309,7 +333,11 @@ export default {
           if (this.movespace === 0 || this.movespace > 1) {
             return;
           } else {
-            this.movespace = (this.movespace += calculateX).toFixed(1);
+            if (this.LandingPageData.length < 2) {
+              return;
+            } else {
+              this.movespace = (this.movespace += calculateX).toFixed(1);
+            }
           }
         }
       }
@@ -336,7 +364,7 @@ export default {
       return adjustLength;
     },
     openDialog(item) {
-      console.log("item", item);
+      //console.log("item", item);
       this.dialogitem = { ...item };
       this.dialog = true;
       this.movespace = 0;

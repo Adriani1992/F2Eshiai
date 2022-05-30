@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="search">
     <v-row>
-      <div class="image"></div>
+      <div class="image" :class="seasonTopic"></div>
       <div class="image_dots">
         <Dots />
       </div>
@@ -21,7 +21,7 @@
                   solo
                   hide-details="auto"
                   placeholder="依地區"
-                  color="#00A7BA"
+                  :color="selectTopic"
                 />
               </v-col>
               <v-col
@@ -34,6 +34,7 @@
                 <div
                   class="location_btn d-flex align-item-center justify-center"
                   @click="gettingData"
+                  :class="seasonTopic"
                 >
                   <v-icon color="#fff" size="24px"> mdi-send </v-icon>
                 </div>
@@ -46,8 +47,8 @@
                   solo
                   hide-details="auto"
                   placeholder="依類型"
-                  color="#00A7BA"
-                  :rules="validateRule.categoryRules"
+                  :color="selectTopic"
+                  :rules="[validateRule.categoryRule]"
                 />
               </v-col>
               <v-col
@@ -60,6 +61,7 @@
                 <div
                   class="location_btn d-flex align-item-center justify-center"
                   @click="gettingData"
+                  :class="seasonTopic"
                 >
                   <v-icon color="#fff" size="38px"> mdi-send </v-icon>
                 </div>
@@ -138,23 +140,54 @@ export default {
     // },
     validateRule() {
       const categoryRule = (val) => {
-        if (val === null) return "類別為必填！";
-        return true;
+        return val === null ? "此欄為必填！" : true;
       };
       return {
         categoryRule: categoryRule,
       };
     },
+    selectSeasonTopic() {
+      return this.$store.state.topic;
+    },
+    seasonTopic() {
+      let checkClass;
+      if (this.selectSeasonTopic === "Summer") {
+        checkClass = { Summer: true };
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkClass = { Spring: true };
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkClass = { Autumn: true };
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkClass = { Winter: true };
+      }
+      return checkClass;
+    },
+    selectTopic() {
+      let checkColor;
+      if (this.selectSeasonTopic === "Summer") {
+        checkColor = "#00A7BA";
+      }
+      if (this.selectSeasonTopic === "Spring") {
+        checkColor = "#fcc9b9";
+      }
+      if (this.selectSeasonTopic === "Autumn") {
+        checkColor = "#9C2706";
+      }
+      if (this.selectSeasonTopic === "Winter") {
+        checkColor = "#22283B";
+      }
+      return checkColor;
+    },
   },
   methods: {
-    mysearchbar() {
-      console.log("hi");
-    },
     async gettingData() {
-      const validate = this.$refs.searchForm.validate();
-      console.log("validate", validate);
+      this.formvalidate = this.$refs.searchForm.validate();
+      //console.log("validate", this.formvalidate);
       this.handleReset();
-      if (validate) {
+      if (this.formvalidate) {
         this.$store.dispatch("setClearable", true);
         await axios
           .get(
@@ -169,7 +202,6 @@ export default {
             // this.randomSelectNumber = [...response.data];
             // console.log("route", this.$route);
             this.initData = cloneDeep(response.data);
-            console.log("exam", this.initData);
             if (this.initData.length !== 0 || this.initData !== undefined) {
               this.dealData();
             }
@@ -208,7 +240,6 @@ export default {
         }
       }
       if (this.initData[0].HotelID) {
-        // console.log(true);
         if (this.$route.name === "Hotel") {
           this.$store.dispatch("setHotel", this.initData);
           return;
@@ -310,7 +341,7 @@ export default {
     .location_btn {
       width: 60px;
       height: 60px;
-      background-color: #00a7ba;
+
       cursor: pointer;
       box-shadow: 1px 1px 3px #333;
       @media screen and (max-width: 959px) {
@@ -321,6 +352,18 @@ export default {
         width: 40px;
         height: 40px;
       }
+    }
+    .location_btn.Summer {
+      background-color: #00a7ba;
+    }
+    .location_btn.Spring {
+      background-color: #fcc9b9;
+    }
+    .location_btn.Autumn {
+      background-color: #9c2706;
+    }
+    .location_btn.Winter {
+      background-color: #22283b;
     }
     .btn {
       border-top-right-radius: 10px;
